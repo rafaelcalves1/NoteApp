@@ -11,4 +11,8 @@ import com.example.noteapp.data.model.Nota
 abstract class NotaDataBase : RoomDatabase() {
 
     abstract val notaDao: NotaDao
+
+    companion object{
+        const val DATABASE_NOME = "nota_db"
+    }
 }

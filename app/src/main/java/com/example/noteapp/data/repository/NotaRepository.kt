@@ -3,7 +3,7 @@ package com.example.noteapp.data.repository
 import com.example.noteapp.data.model.Nota
 import kotlinx.coroutines.flow.Flow
 
-interface NotaRepositoy {
+interface NotaRepository {
 
     fun pegaNotas(): Flow<List<Nota>>
 

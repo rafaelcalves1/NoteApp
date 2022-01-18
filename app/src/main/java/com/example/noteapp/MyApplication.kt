@@ -3,7 +3,9 @@ package com.example.noteapp
 import android.app.Application
 import androidx.room.Room
 import com.example.noteapp.data.data_source.NotaDataBase
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class MyApplication : Application() {
 
     companion object {
