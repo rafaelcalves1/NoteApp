@@ -14,7 +14,6 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         notaDataBase =
             Room.databaseBuilder(this, NotaDataBase::class.java, "my-db").allowMainThreadQueries()
                 .build()

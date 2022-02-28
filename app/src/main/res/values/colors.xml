@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="roxo_forte">#190037</color>
-    <color name="roxo_medio">#40019A</color>
-    <color name="roxo_fraco">#5108F4</color>
-    <color name="amarelo_medio">#DCB704</color>
-    <color name="amarelo_forte">#F6CD04</color>
-    <color name="black">#FF000000</color>
+    <color name="dark_gray">#FF404040</color>
+    <color name="black_dark">#FF202020</color>
+    <color name="black">#181818</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

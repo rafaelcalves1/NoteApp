@@ -6,7 +6,7 @@ import com.example.noteapp.data.data_source.NotaDataBase
 import com.example.noteapp.data.data_source.NotaDataBase.Companion.DATABASE_NOME
 import com.example.noteapp.data.repository.NotaRepository
 import com.example.noteapp.data.repository.NotaRepositoryImpl
-import com.example.noteapp.ui.viewmodel.MainActivityViewModel
+import com.example.noteapp.presenter.viewmodel.MainActivityViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
