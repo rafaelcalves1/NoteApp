@@ -19,6 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".presenter.activity.AddNoteActivity" android:exported="false"
+            android:theme="@style/Theme.NoteApp.NoActionBar"
+            />
     </application>
 
 </manifest>

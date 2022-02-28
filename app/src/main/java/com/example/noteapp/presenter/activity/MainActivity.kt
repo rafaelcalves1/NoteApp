@@ -1,5 +1,6 @@
 package com.example.noteapp.presenter.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +24,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.mainFabButton.setOnClickListener {
+            Intent(this, AddNoteActivity::class.java).also{
+                startActivity(it)
+            }
+        }
     }
 
     private fun configView() {

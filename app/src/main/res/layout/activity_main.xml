@@ -20,7 +20,7 @@
             android:id="@+id/mainActivity_text_titulo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="NotaApp"
+            android:text="NotaApp"
             android:textColor="@color/white"
             android:textSize="28sp"
             app:layout_constraintEnd_toStartOf="@id/mainActivity_img_titulo"
@@ -57,12 +57,14 @@
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/main_fab_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:layout_marginRight="12dp"
         android:src="@drawable/ic_add"
         android:backgroundTint="@color/white"
+        app:borderWidth="0dp"
         app:fabSize="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
