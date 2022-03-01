@@ -7,7 +7,7 @@
     app:cardCornerRadius="15dp"
     android:elevation="0dp"
     android:layout_marginBottom="8dp"
-    app:cardBackgroundColor="#421B1B"
+    app:cardBackgroundColor="@color/yellow"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +34,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="12dp"
             android:textSize="17sp"
-            tools:text="Chicken ball tip short loin meatball, kevin beef ribs tail frankfurter"
+            tools:text="Chicken ball tip short loin meatball, kevin beef ribs tail frankfurter Chicken ball tip short loin meatball, kevin beef ribs tail frankfurter"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/item_note_delete"

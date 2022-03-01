@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.room.Room
 import com.example.noteapp.data.data_source.NotaDataBase
 import com.example.noteapp.data.data_source.NotaDataBase.Companion.DATABASE_NOME
-import com.example.noteapp.data.repository.NotaRepository
+import com.example.noteapp.domain.repository.NotaRepository
 import com.example.noteapp.data.repository.NotaRepositoryImpl
-import com.example.noteapp.presenter.viewmodel.MainActivityViewModel
+import com.example.noteapp.domain.use_cases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,9 +31,12 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNotaViewModel(repository: NotaRepository): MainActivityViewModel {
-        return MainActivityViewModel(
-            repository
+    fun provideNotaUseCases(repository: NotaRepository): NotasUseCases {
+        return NotasUseCases(
+            pegaNotasUseCase = PegaNotasUseCase(repository),
+            deleteNotaUseCase = DeleteNotaUseCase(repository),
+            addNotaUseCase = AddNotaUseCase(repository),
+            pegaNotaByIdUseCase = PegaNotaByIdUseCase(repository)
         )
     }
 

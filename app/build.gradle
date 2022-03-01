@@ -65,6 +65,10 @@ dependencies {
     //Lib BlurKit
     implementation 'io.alterac.blurkit:blurkit:1.1.0'
 
+    //Material design
+    def material_version = "1.5.0"
+    implementation "com.google.android.material:material:$material_version"
+
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

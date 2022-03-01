@@ -20,7 +20,7 @@
             android:id="@+id/mainActivity_text_titulo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="NotaApp"
+            android:text="@string/txt_nome_app"
             android:textColor="@color/white"
             android:textSize="28sp"
             app:layout_constraintEnd_toStartOf="@id/mainActivity_img_titulo"
@@ -45,14 +45,79 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <LinearLayout
+        android:id="@+id/mainActivity_layout_chips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/mainActivity_layout_titulo"
+        >
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chips_groups_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        >
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/mainChipFilterCor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Chips"
+            android:text="Cor"
+            />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/mainChipFilterDataCriação"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Chips"
+            android:text="Data de criação"
+            />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/mainChipFilterAlfabética"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Chips"
+            android:text="Alfabética"
+            />
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chips_groups_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        app:singleSelection="true"
+        >
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/mainChipFilterCrescente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Chips"
+            android:text="Crescente"
+            />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/mainChipFilterDecrescente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Chips"
+            android:text="Decrescente"
+            />
+    </com.google.android.material.chip.ChipGroup>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mainActivity_recycler_note"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="12dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_nota"
-        app:layout_constraintTop_toBottomOf="@id/mainActivity_layout_titulo"
+        app:layout_constraintTop_toBottomOf="@id/mainActivity_layout_chips"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 

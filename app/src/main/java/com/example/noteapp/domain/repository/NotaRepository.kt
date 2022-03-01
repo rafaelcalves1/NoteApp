@@ -1,6 +1,6 @@
-package com.example.noteapp.data.repository
+package com.example.noteapp.domain.repository
 
-import com.example.noteapp.data.model.Nota
+import com.example.noteapp.domain.model.Nota
 import kotlinx.coroutines.flow.Flow
 
 interface NotaRepository {

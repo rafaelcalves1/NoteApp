@@ -2,7 +2,7 @@ package com.example.noteapp.data.data_source
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.noteapp.data.model.Nota
+import com.example.noteapp.domain.model.Nota
 
 @Database(
     entities = [Nota::class],

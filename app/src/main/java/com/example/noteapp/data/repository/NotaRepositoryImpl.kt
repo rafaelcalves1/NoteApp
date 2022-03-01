@@ -1,7 +1,8 @@
 package com.example.noteapp.data.repository
 
 import com.example.noteapp.data.data_source.NotaDao
-import com.example.noteapp.data.model.Nota
+import com.example.noteapp.domain.model.Nota
+import com.example.noteapp.domain.repository.NotaRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Singleton
 

@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.example.noteapp.data.model.Nota
+import com.example.noteapp.domain.model.Nota
 import kotlinx.coroutines.flow.Flow
 
 @Dao

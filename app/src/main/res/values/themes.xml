@@ -18,4 +18,13 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
+
+    <style name="Widget.Chips" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/black_dark</item>
+        <item name="checkedIconTint">@color/white</item>
+        <item name="chipCornerRadius">10dp</item>
+        <item name="chipStrokeWidth">2dp</item>
+        <item name="chipStrokeColor">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>
