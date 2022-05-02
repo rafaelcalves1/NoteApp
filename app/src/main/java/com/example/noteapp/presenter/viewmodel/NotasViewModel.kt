@@ -12,6 +12,6 @@ import javax.inject.Inject
 class NotasViewModel @Inject constructor(
     private val notasUseCases: NotasUseCases
 ) : ViewModel() {
-
+a
 a
 }
