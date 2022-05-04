@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     private fun configView() {
         lifecycleScope.launch {
             viewModel.pegaNotas().collect {
-
+ada
             }
         }
     }
