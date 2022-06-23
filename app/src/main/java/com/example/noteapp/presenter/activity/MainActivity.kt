@@ -21,16 +21,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        configClickFab()
-        configClickMenu()
-        configView()
+        configListenners()
+        configObservers()
         viewModel.getNotes()
     }
 
-    private fun configView() {
+    private fun configObservers() {
         viewModel.listNotas.observe(this) {
             println(it)
         }
+    }
+
+    private fun configListenners(){
+        configClickFab()
+        configClickMenu()
     }
 
     private fun configClickMenu() {
