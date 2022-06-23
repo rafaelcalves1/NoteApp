@@ -4,11 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.example.noteapp.databinding.ActivityMainBinding
 import com.example.noteapp.presenter.viewmodel.NotasViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -25,13 +23,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         configClickFab()
         configClickMenu()
+        configView()
+        viewModel.getNotes()
     }
 
     private fun configView() {
-        lifecycleScope.launch {
-            viewModel.pegaNotas().collect {
-
-            }
+        viewModel.listNotas.observe(this) {
+            println(it)
         }
     }
 
@@ -42,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun configClickFab(){
+    private fun configClickFab() {
         binding.mainFabButton.setOnClickListener {
             Intent(this, AddNoteActivity::class.java).also {
                 startActivity(it)
