@@ -20,14 +20,12 @@ class PegaNotasUseCase(
                     when(notaOrder){
                         is NotaOrder.Date -> notas.sortedBy { it.titulo.lowercase() }
                         is NotaOrder.Title -> notas.sortedBy { it.datacriacao }
-                        is NotaOrder.Color -> notas.sortedBy { it.colorNote }
                     }
                 }
                 is OrderType.Descending -> {
                     when(notaOrder){
                         is NotaOrder.Date -> notas.sortedByDescending { it.titulo.lowercase() }
                         is NotaOrder.Title -> notas.sortedByDescending { it.datacriacao }
-                        is NotaOrder.Color -> notas.sortedByDescending { it.colorNote }
                     }
                 }
             }

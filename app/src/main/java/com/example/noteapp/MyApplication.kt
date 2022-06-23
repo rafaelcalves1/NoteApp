@@ -17,8 +17,6 @@ class MyApplication : Application() {
         notaDataBase =
             Room.databaseBuilder(this, NotaDataBase::class.java, "my-db").allowMainThreadQueries()
                 .build()
-
-
     }
 
 }

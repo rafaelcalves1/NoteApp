@@ -23,7 +23,7 @@ class NotasViewModel @Inject constructor(
     fun getNotes(){
         viewModelScope.launch {
             notasUseCases.pegaNotasUseCase.invoke().collect {
-                _notas.postValue(it)
+                _notas.value = it
             }
         }
     }

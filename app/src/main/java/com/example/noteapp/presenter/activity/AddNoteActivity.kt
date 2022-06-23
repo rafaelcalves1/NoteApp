@@ -6,7 +6,9 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.noteapp.R
 import com.example.noteapp.databinding.ActivityAddNoteBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddNoteActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityAddNoteBinding
