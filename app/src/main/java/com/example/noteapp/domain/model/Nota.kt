@@ -9,10 +9,5 @@ data class Nota(
     val titulo: String,
     val descricao: String,
     val datacriacao: Long,
-    val colorNote: Int,
     @PrimaryKey val idNota: Int
-){
-    companion object{
-        val noteColors = listOf( R.color.orange, R.color.yellow, R.color.violet, R.color.blue, R.color.pink)
-    }
-}
+)
