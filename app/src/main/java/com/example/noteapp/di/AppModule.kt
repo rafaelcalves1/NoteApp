@@ -1,45 +1,44 @@
 package com.example.noteapp.di
 
-import android.app.Application
 import androidx.room.Room
 import com.example.noteapp.data.data_source.NotaDataBase
 import com.example.noteapp.data.data_source.NotaDataBase.Companion.DATABASE_NOME
-import com.example.noteapp.domain.repository.NotaRepository
 import com.example.noteapp.data.repository.NotaRepositoryImpl
+import com.example.noteapp.domain.repository.NotaRepository
 import com.example.noteapp.domain.use_cases.*
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import com.example.noteapp.presenter.viewmodel.NotasViewModel
+import org.koin.android.ext.koin.androidApplication
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.module.dsl.bind
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Provides
-    @Singleton
-    fun provideNotaDatabase(app: Application): NotaDataBase {
-        return Room.databaseBuilder(app, NotaDataBase::class.java, DATABASE_NOME).build()
+    val useCasesModule = module {
+        factory { AddNotaUseCase(get()) }
+        factory { DeleteNotaUseCase(get()) }
+        factory { PegaNotasUseCase(get()) }
+        factory { PegaNotaByIdUseCase(get()) }
+        factory { NotasUseCases(get(), get(), get(), get()) }
     }
 
-    @Provides
-    @Singleton
-    fun provideNotaRepository(db: NotaDataBase): NotaRepository {
-        return NotaRepositoryImpl(db.notaDao)
+    val dataBaseModule = module {
+        single {
+            Room.databaseBuilder(
+                androidApplication(),
+                NotaDataBase::class.java,
+                DATABASE_NOME
+            ).build()
+        }
     }
 
-    @Provides
-    @Singleton
-    fun provideNotaUseCases(repository: NotaRepository): NotasUseCases {
-        return NotasUseCases(
-            pegaNotasUseCase = PegaNotasUseCase(repository),
-            deleteNotaUseCase = DeleteNotaUseCase(repository),
-            addNotaUseCase = AddNotaUseCase(repository),
-            pegaNotaByIdUseCase = PegaNotaByIdUseCase(repository)
-        )
+    val repositoryModule = module {
+        singleOf(::NotaRepositoryImpl) {bind<NotaRepository>()}
     }
 
+    val viewModelModule = module {
+        viewModel { NotasViewModel(get()) }
+    }
 
 }

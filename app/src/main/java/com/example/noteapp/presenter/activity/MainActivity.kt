@@ -6,16 +6,13 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.noteapp.databinding.ActivityMainBinding
 import com.example.noteapp.presenter.viewmodel.NotasViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    @Inject
-    lateinit var viewModel: NotasViewModel
+    private val viewModel: NotasViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

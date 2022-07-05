@@ -5,15 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.noteapp.domain.model.Nota
-import com.example.noteapp.domain.repository.NotaRepository
 import com.example.noteapp.domain.use_cases.NotasUseCases
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class NotasViewModel @Inject constructor(
+class NotasViewModel(
     private val notasUseCases: NotasUseCases
 ) : ViewModel() {
 
