@@ -1,6 +1,7 @@
 package com.example.noteapp.di
 
 import androidx.room.Room
+import com.example.noteapp.data.data_source.NotaDao
 import com.example.noteapp.data.data_source.NotaDataBase
 import com.example.noteapp.data.data_source.NotaDataBase.Companion.DATABASE_NOME
 import com.example.noteapp.data.repository.NotaRepositoryImpl
@@ -24,6 +25,10 @@ object AppModule {
     }
 
     val dataBaseModule = module {
+        fun provideNotaDao(dataBase: NotaDataBase) : NotaDao {
+            return dataBase.notaDao
+        }
+
         single {
             Room.databaseBuilder(
                 androidApplication(),
@@ -31,10 +36,14 @@ object AppModule {
                 DATABASE_NOME
             ).build()
         }
+
+        single {
+            provideNotaDao(get())
+        }
     }
 
     val repositoryModule = module {
-        singleOf(::NotaRepositoryImpl) {bind<NotaRepository>()}
+        single { NotaRepositoryImpl(get()) as NotaRepository}
     }
 
     val viewModelModule = module {

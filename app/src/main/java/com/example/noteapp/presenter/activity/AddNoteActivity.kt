@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.noteapp.R
 import com.example.noteapp.databinding.ActivityAddNoteBinding
+import com.example.noteapp.presenter.util.changeColorBackground
+import kotlinx.coroutines.launch
 
-class AddNoteActivity: AppCompatActivity() {
+class AddNoteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddNoteBinding
 
@@ -19,38 +22,46 @@ class AddNoteActivity: AppCompatActivity() {
             addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         }
         binding.addNoteColorOrange.isEnabled = false
-        configColors()
+        addListenners()
     }
 
-    private fun configColors(){
+    private fun addListenners() {
         binding.addNoteColorOrange.setOnClickListener {
             configBtn(it)
-            binding.root.setBackgroundColor(resources.getColor(R.color.orange, null))
+            binding.root.changeColorBackground(R.color.orange)
         }
         binding.addNoteColorYellow.setOnClickListener {
             configBtn(it)
-            binding.root.setBackgroundColor(resources.getColor(R.color.yellow, null))
+            binding.root.changeColorBackground(R.color.yellow)
         }
         binding.addNoteColorViolet.setOnClickListener {
             configBtn(it)
-            binding.root.setBackgroundColor(resources.getColor(R.color.violet, null))
+            binding.root.changeColorBackground(R.color.violet)
         }
         binding.addNoteColorBlue.setOnClickListener {
             configBtn(it)
-            binding.root.setBackgroundColor(resources.getColor(R.color.blue, null))
+            binding.root.changeColorBackground(R.color.blue)
         }
         binding.addNoteColorPink.setOnClickListener {
             configBtn(it)
-            binding.root.setBackgroundColor(resources.getColor(R.color.pink, null))
+            binding.root.changeColorBackground(R.color.pink)
         }
     }
 
-    private fun configBtn(view: View){
+    private fun configBtn(view: View) {
         view.isEnabled = false
-        val listButton = listOf(binding.addNoteColorOrange, binding.addNoteColorYellow, binding.addNoteColorViolet, binding.addNoteColorBlue, binding.addNoteColorPink)
-        listButton.forEach {
-            if(it != view){
-                it.isEnabled = true
+        val listButton = listOf(
+            binding.addNoteColorOrange,
+            binding.addNoteColorYellow,
+            binding.addNoteColorViolet,
+            binding.addNoteColorBlue,
+            binding.addNoteColorPink
+        )
+        lifecycleScope.launch {
+            listButton.forEach {
+                if (it != view) {
+                    it.isEnabled = true
+                }
             }
         }
     }
