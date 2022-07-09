@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="50dp"
-    app:cardBackgroundColor="@color/yellow"
-    android:layout_margin="10dp"
-    android:background="@drawable/background_view_border_orange"
-    >
-
-</androidx.cardview.widget.CardView>
+<View xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/color_pick_width_m"
+    android:layout_height="@dimen/color_pick_height_m"
+    android:layout_margin="@dimen/color_pick_dimen_m"
+    android:background="@drawable/background_view_border_orange" />

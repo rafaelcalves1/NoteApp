@@ -1,18 +1,33 @@
 package com.example.noteapp.presenter.activity
 
 import android.os.Bundle
-import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import com.example.noteapp.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.noteapp.databinding.ActivityAddNoteBinding
-import com.example.noteapp.presenter.util.changeColorBackground
-import kotlinx.coroutines.launch
+import com.example.noteapp.domain.model.ColorBackground
+import com.example.noteapp.domain.model.ColorBackground.*
+import com.example.noteapp.domain.model.ColorPick
+import com.example.noteapp.domain.model.Nota
+import com.example.noteapp.presenter.adapter.ItemColorPickAdapter
+import com.example.noteapp.presenter.viewmodel.AddNotesViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddNoteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddNoteBinding
+
+    private val listColor = listOf(
+        ColorPick(BLUE, false),
+        ColorPick(ORANGE, false),
+        ColorPick(PINK, false),
+        ColorPick(YELLOW, false),
+        ColorPick(VIOLET, false)
+    )
+
+    private val viewModel: AddNotesViewModel by viewModel()
+    private var colorNote: ColorBackground = BLUE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,48 +36,50 @@ class AddNoteActivity : AppCompatActivity() {
         window.apply {
             addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         }
-        binding.addNoteColorOrange.isEnabled = false
+        addObservers()
         addListenners()
+        configRecycler()
     }
 
     private fun addListenners() {
-        binding.addNoteColorOrange.setOnClickListener {
-            configBtn(it)
-            binding.root.changeColorBackground(R.color.orange)
-        }
-        binding.addNoteColorYellow.setOnClickListener {
-            configBtn(it)
-            binding.root.changeColorBackground(R.color.yellow)
-        }
-        binding.addNoteColorViolet.setOnClickListener {
-            configBtn(it)
-            binding.root.changeColorBackground(R.color.violet)
-        }
-        binding.addNoteColorBlue.setOnClickListener {
-            configBtn(it)
-            binding.root.changeColorBackground(R.color.blue)
-        }
-        binding.addNoteColorPink.setOnClickListener {
-            configBtn(it)
-            binding.root.changeColorBackground(R.color.pink)
+        binding.addNoteSaveNote.setOnClickListener {
+            viewModel.addNotes(
+                Nota(
+                    titulo = binding.addNoteInputTitle.text.toString(),
+                    descricao = binding.addNoteInputBody.text.toString(),
+                    datacriacao = System.currentTimeMillis(),
+                    colorNota = colorNote.ordinal
+                )
+            )
         }
     }
 
-    private fun configBtn(view: View) {
-        view.isEnabled = false
-        val listButton = listOf(
-            binding.addNoteColorOrange,
-            binding.addNoteColorYellow,
-            binding.addNoteColorViolet,
-            binding.addNoteColorBlue,
-            binding.addNoteColorPink
-        )
-        lifecycleScope.launch {
-            listButton.forEach {
-                if (it != view) {
-                    it.isEnabled = true
-                }
+    private fun configRecycler() {
+        binding.addNoteRecyclerColors.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = ItemColorPickAdapter(::setOnColorPick).apply {
+                submitList(listColor)
             }
         }
     }
+
+    private fun setOnColorPick(colorPick: ColorPick) {
+        if (colorPick.isEnabled) {
+            colorNote = colorPick.color
+            binding.root.setBackgroundResource(colorPick.setBackgroundColorRes())
+        }
+    }
+
+    private fun addObservers() {
+        viewModel.addNoteSuccess.observe(this) {
+            it?.let {
+                this.finish()
+            }
+        }
+
+        viewModel.error.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }

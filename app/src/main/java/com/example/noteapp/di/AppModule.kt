@@ -7,11 +7,10 @@ import com.example.noteapp.data.data_source.NotaDataBase.Companion.DATABASE_NOME
 import com.example.noteapp.data.repository.NotaRepositoryImpl
 import com.example.noteapp.domain.repository.NotaRepository
 import com.example.noteapp.domain.use_cases.*
+import com.example.noteapp.presenter.viewmodel.AddNotesViewModel
 import com.example.noteapp.presenter.viewmodel.NotasViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.module.dsl.bind
-import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 object AppModule {
@@ -25,7 +24,7 @@ object AppModule {
     }
 
     val dataBaseModule = module {
-        fun provideNotaDao(dataBase: NotaDataBase) : NotaDao {
+        fun provideNotaDao(dataBase: NotaDataBase): NotaDao {
             return dataBase.notaDao
         }
 
@@ -34,7 +33,7 @@ object AppModule {
                 androidApplication(),
                 NotaDataBase::class.java,
                 DATABASE_NOME
-            ).build()
+            ).fallbackToDestructiveMigration().build()
         }
 
         single {
@@ -43,11 +42,12 @@ object AppModule {
     }
 
     val repositoryModule = module {
-        single { NotaRepositoryImpl(get()) as NotaRepository}
+        single { NotaRepositoryImpl(get()) as NotaRepository }
     }
 
     val viewModelModule = module {
         viewModel { NotasViewModel(get()) }
+        viewModel { AddNotesViewModel(get()) }
     }
 
 }

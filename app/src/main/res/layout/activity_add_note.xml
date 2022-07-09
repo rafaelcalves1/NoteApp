@@ -4,70 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/orange"
+    android:background="@color/blue"
     android:fitsSystemWindows="true"
     android:padding="10dp">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/add_note_recycler_colors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/guideline2"
-        tools:layout_editor_absoluteX="10dp">
+        tools:itemCount="5"
+        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_color_pick" />
 
-        <View
-            android:id="@+id/add_note_color_orange"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/background_view_border_orange"
-            app:layout_constraintEnd_toStartOf="@+id/add_note_color_yellow"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/add_note_color_yellow"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/background_view_border_yellow"
-            app:layout_constraintEnd_toStartOf="@+id/add_note_color_violet"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/add_note_color_orange"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/add_note_color_violet"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/background_view_border_violet"
-            app:layout_constraintEnd_toStartOf="@+id/add_note_color_blue"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/add_note_color_yellow"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/add_note_color_blue"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/background_view_border_blue"
-            app:layout_constraintEnd_toStartOf="@+id/add_note_color_pink"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/add_note_color_violet"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/add_note_color_pink"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/background_view_border_pink"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/add_note_color_blue"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/add_note_input_title"
