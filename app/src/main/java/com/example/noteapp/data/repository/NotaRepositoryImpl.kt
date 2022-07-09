@@ -15,7 +15,7 @@ class NotaRepositoryImpl(private val dao: NotaDao) : NotaRepository {
         return dao.pegaNoteById(id)
     }
 
-    override suspend fun adicionaNota(nota: Nota) {
+    override suspend fun adicionaNota(nota: Nota): Long {
         return dao.adicionaNota(nota)
     }
 

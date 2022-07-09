@@ -9,7 +9,7 @@ interface NotaRepository {
 
     suspend fun pegaNotaById(id: Int): Nota?
 
-    suspend fun adicionaNota(nota: Nota)
+    suspend fun adicionaNota(nota: Nota) : Long
 
     suspend fun deletaNota(nota: Nota)
 }

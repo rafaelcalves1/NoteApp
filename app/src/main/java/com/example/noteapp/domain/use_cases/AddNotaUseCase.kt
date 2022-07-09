@@ -7,7 +7,7 @@ class AddNotaUseCase(
     private val notaRepository: NotaRepository
 ) {
 
-    suspend operator fun invoke(nota: Nota){
-        notaRepository.adicionaNota(nota)
+    suspend operator fun invoke(nota: Nota): Long{
+        return notaRepository.adicionaNota(nota)
     }
 }

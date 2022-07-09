@@ -18,7 +18,7 @@ interface NotaDao {
     suspend fun pegaNoteById(id: Int): Nota?
 
     @Insert(onConflict = REPLACE)
-    suspend fun adicionaNota(nota: Nota)
+    suspend fun adicionaNota(nota: Nota) : Long
 
     @Delete
     suspend fun deletaNota(nota: Nota)

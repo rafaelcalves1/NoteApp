@@ -13,14 +13,21 @@ class NotasViewModel(
     private val notasUseCases: NotasUseCases
 ) : ViewModel() {
 
-    private val _notas =  MutableLiveData<List<Nota>>()
+    private val _notas = MutableLiveData<List<Nota>>()
     val listNotas: LiveData<List<Nota>> = _notas
 
-    fun getNotes(){
+    fun getNotes() {
         viewModelScope.launch {
             notasUseCases.pegaNotasUseCase.invoke().collect {
                 _notas.value = it
             }
+        }
+    }
+
+    fun deleteNotes(nota: Nota){
+        viewModelScope.launch {
+            notasUseCases.deleteNotaUseCase(nota)
+            //getNotes()
         }
     }
 
